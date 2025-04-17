@@ -35,7 +35,7 @@ const Quiz = ({ questions, mbtiScore, setMbitiScore, setMode }) => {
 };
 
 export default Quiz;
-
+//
 // 16 Result
 // 12(4*3) Questions - Options selection
 // E:0 / I:0 ...... / J:0 /P:0
