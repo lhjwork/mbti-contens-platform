@@ -1,8 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import * as animationData from "../../assets/loading.json"; // Adjust the path as necessary
 import stylse from "./loading.module.css";
+import { useNavigate } from "react-router-dom";
 const Loading = ({ mbtiScore, currentTest }) => {
+  const natigate = useNavigate();
+  const [finalQuery, setFinalQuery] = useState("");
+  const loadingTime = 3700;
+  // loadingTime -> 3.7초
   useEffect(() => {
     const mbtiPairs = [
       ["E", "I"],
@@ -17,9 +22,19 @@ const Loading = ({ mbtiScore, currentTest }) => {
       resultTpye += mbtiScore[first] > mbtiScore[second] ? first : second;
     }
     const resultQuery = currentTest?.result?.find((item) => item.type === resultTpye)?.query;
+    setFinalQuery(resultQuery);
+  }, [mbtiScore, currentTest, currentTest?.info?.mainUrl, finalQuery]);
 
-    console.log("Result MBTI Type:", resultTpye);
-  }, [mbtiScore, currentTest]);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      //resultQuery 활용해서 결과 페이지로 라우팅하기]
+      finalQuery && natigate(`/${currentTest?.info?.mainUrl}/result/${finalQuery}`);
+    }, loadingTime);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [loadingTime, natigate]);
 
   const defaultOptions = {
     loop: true,
