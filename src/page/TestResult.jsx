@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import TestResultRenderer from "../components/testResult/TestResultRenderer";
 import ShareButtonGroup from "../components/testResult/ShareButtonGroup";
 import ResultButtonGroup from "../components/testResult/ResultButtonGroup";
@@ -9,21 +9,27 @@ import { TESTS } from "../data/TESTS";
 const TestResult = () => {
   const navigate = useNavigate();
   const { testParam, resultParam } = useParams();
+  const [renderResultInfo, setRenderResultInfo] = useState({});
   useEffect(() => {
     const testInfo = TESTS.find((test) => test.info.mainUrl === testParam);
     if (!testInfo) {
       alert("존재하지 않는 테스트입니다.");
       navigate("/");
-
       return;
     }
 
-    console.log(testInfo);
-  }, [testParam, resultParam]);
+    const resultInfo = testInfo?.results?.find((result) => result.query === resultParam);
+    if (!resultInfo) {
+      alert("존재하지 않는 결과입니다.");
+      navigate(`/${testInfo?.info?.mainUrl}`);
+      return;
+    }
+    setRenderResultInfo(resultInfo);
+  }, [testParam, resultParam, navigate]);
 
   return (
     <div>
-      <TestResultRenderer />
+      <TestResultRenderer renderResultInfo={renderResultInfo} />
       <ShareButtonGroup />
       <ResultButtonGroup />
       <ResultThumbnailList />
