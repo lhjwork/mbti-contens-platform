@@ -26,7 +26,7 @@ const ThumbnailList = () => {
     <div>
       {testList?.map((test) => {
         return (
-          <Link to={`${base_url}/${test?.info?.mainUrl}`} key={test?.info?.mainUrl}>
+          <Link to={`/${test?.info?.mainUrl}`} key={test?.info?.mainUrl}>
             <img style={{ width: "100%" }} src={test?.info?.thumbImage} alt={test?.info?.mainUrl} />
           </Link>
         );
