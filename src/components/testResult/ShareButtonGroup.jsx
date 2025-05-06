@@ -17,7 +17,7 @@ const ShareButtonGroup = ({ testParam, resultParam, renderTestInfo }) => {
         </FacebookShareButton>
 
         <TwitterShareButton
-          title={renderTestInfo?.info.mainTitle}
+          title={renderTestInfo?.info?.mainTitle}
           url={`${base_url}/${testParam}/result/${resultParam}`}
           hashtags={[renderTestInfo?.info?.mainTitle]}
         >
