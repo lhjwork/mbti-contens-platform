@@ -5,7 +5,7 @@ import { base_url } from "../../App";
 import { useNavigate } from "react-router-dom";
 import styles from "./resultButtonGroup.module.css";
 
-const ResultButtonGroup = ({ testParam, resultParam, renderTestInfo }) => {
+const ResultButtonGroup = ({ testParam, resultParam }) => {
   const navigate = useNavigate();
 
   const onClckRedoButton = () => {
@@ -17,8 +17,8 @@ const ResultButtonGroup = ({ testParam, resultParam, renderTestInfo }) => {
   };
 
   return (
-    <div className={stlyes.mainDiv}>
-      <div className={stlyes.upperDiv}>
+    <div className={styles.mainDiv}>
+      <div className={styles.upperDiv}>
         <CopyToClipboard
           text={`${base_url}/${testParam}/result/${resultParam}`}
           onCopy={() => alert("URL이 복사되었습니다.")}
@@ -34,9 +34,9 @@ const ResultButtonGroup = ({ testParam, resultParam, renderTestInfo }) => {
           &nbsp; 다시 하기
         </button>
       </div>
-      <div className={stlyes.bottomDiv}>
+      <div className={styles.bottomDiv}>
         {" "}
-        <button className={stlyes.bottomButtom} onClick={onClickGoHomeButton}>
+        <button className={styles.bottomButtom} onClick={onClickGoHomeButton}>
           <HomeOutlined />
           &nbsp; 다른 테스트 하러 가기
         </button>
