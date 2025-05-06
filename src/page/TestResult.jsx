@@ -10,6 +10,8 @@ const TestResult = () => {
   const navigate = useNavigate();
   const { testParam, resultParam } = useParams();
   const [renderResultInfo, setRenderResultInfo] = useState({});
+  const [renderTestInfo, setRenderTestInfo] = useState({});
+
   useEffect(() => {
     const testInfo = TESTS.find((test) => test.info.mainUrl === testParam);
     if (!testInfo) {
@@ -17,6 +19,7 @@ const TestResult = () => {
       navigate("/");
       return;
     }
+    setRenderTestInfo(testInfo);
 
     const resultInfo = testInfo?.results?.find((result) => result.query === resultParam);
     if (!resultInfo) {
@@ -30,7 +33,7 @@ const TestResult = () => {
   return (
     <div>
       <TestResultRenderer renderResultInfo={renderResultInfo} />
-      <ShareButtonGroup />
+      <ShareButtonGroup testParam={testParam} resultParam={resultParam} renderTestInfo={renderTestInfo} />
       <ResultButtonGroup />
       <ResultThumbnailList />
     </div>
