@@ -35,7 +35,7 @@ const TestResult = () => {
       <TestResultRenderer renderResultInfo={renderResultInfo} />
       <ShareButtonGroup testParam={testParam} resultParam={resultParam} renderTestInfo={renderTestInfo} />
       <ResultButtonGroup testParam={testParam} resultParam={resultParam} renderTestInfo={renderTestInfo} />
-      <ResultThumbnailList />
+      <ResultThumbnailList testParam={testParam} />
     </div>
   );
 };

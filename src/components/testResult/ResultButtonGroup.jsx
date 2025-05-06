@@ -35,7 +35,6 @@ const ResultButtonGroup = ({ testParam, resultParam }) => {
         </button>
       </div>
       <div className={styles.bottomDiv}>
-        {" "}
         <button className={styles.bottomButtom} onClick={onClickGoHomeButton}>
           <HomeOutlined />
           &nbsp; 다른 테스트 하러 가기

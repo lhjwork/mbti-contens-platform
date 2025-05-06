@@ -30,6 +30,9 @@ const Quiz = ({ questions, mbtiScore, setMbitiScore, setMode }) => {
         ))}
 
       <Progress percent={(questionNum / questions.length) * 100} showInfo={false} />
+      <h4>
+        {questionNum} / {questions.length}
+      </h4>
     </div>
   );
 };
